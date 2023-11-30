@@ -7,11 +7,11 @@ class Funciones{
     public:
         unsigned int sumaIterativa(int n){
 
-        int contador = 0;
+        int cont = 0;
         for(int i=1; i<=n; i++){
-        contador += i;
+        cont += i;
         }
-        return contador;
+        return cont;
         }
 
 
