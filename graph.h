@@ -44,7 +44,7 @@ public:
 };
 
 Graph::Graph() {
-    // Inicializa los miembros de la clase según sea necesario.
+
     edgesList = 0;
     edgesMat = 0;
     nodes = 0;
@@ -52,9 +52,8 @@ Graph::Graph() {
     adjMatrix = nullptr;
 }
 
-// Constructor con un parámetro para el número de nodos
 Graph::Graph(int n) {
-    // Inicializa los miembros de la clase según sea necesario y crea las estructuras de datos.
+ 
     nodes = n;
     edgesList = 0;
     edgesMat = 0;
@@ -62,32 +61,32 @@ Graph::Graph(int n) {
     adjMatrix = new int[n * n]();
 }
 
-//lIST STUFF
+
 
 void Graph::loadGraphList(string data, int numVertices) {
-    // Inicializa las listas de adyacencia
+
     nodes = numVertices;
     adjList = new vector<int>[nodes];
     
-    // Usa stringstream para dividir la cadena en aristas
+
     stringstream ss(data);
     char openParenthesis, comma, closeParenthesis;
     int u, v;
 
     while (ss >> openParenthesis >> u >> comma >> v >> closeParenthesis) {
-        // Agrega la arista a la lista de adyacencia
+
         adjList[u].push_back(v);
-        adjList[v].push_back(u); // Si es un grafo no dirigido
+        adjList[v].push_back(u); 
         edgesList++;
     }
 }
 
 void Graph::addEdgeAdjList(int u, int v) {
     if (u >= 0 && u < nodes && v >= 0 && v < nodes) {
-        // Agregar v a la lista de adyacencia de u
+  
         adjList[u].push_back(v);
 
-        // Si el grafo es no dirigido, agrega u a la lista de adyacencia de v
+ 
         adjList[v].push_back(u);
 
         edgesList++;
@@ -100,7 +99,7 @@ string Graph::printAdjList() {
     for (int i = 0; i < nodes; i++) {
         result += "vertex " + to_string(i) + " : ";
 
-        // Ordena la lista de adyacencia para imprimir los vecinos en orden ascendente
+
         sort(adjList[i].begin(), adjList[i].end());
 
         for (int j = 0; j < adjList[i].size(); j++) {
@@ -113,21 +112,21 @@ string Graph::printAdjList() {
     return result;
 }
 
-//Matrix sTUFF
+
 
 void Graph::loadGraphMat(string data, int a, int b) {
-    nodes = a; // Establece el número de nodos
-    adjMatrix = new int[a * a](); // Inicializa la matriz de adyacencia con ceros
+    nodes = a; 
+    adjMatrix = new int[a * a](); 
 
-    // Analiza la cadena 'data' para agregar las aristas a la matriz de adyacencia
+
     stringstream ss(data);
     char openParenthesis, comma, closeParenthesis;
     int u, v;
 
     while (ss >> openParenthesis >> u >> comma >> v >> closeParenthesis) {
-        // Agrega la arista a la matriz de adyacencia
+      
         adjMatrix[u * a + v] = 1;
-        adjMatrix[v * a + u] = 1; // Si es un grafo no dirigido
+        adjMatrix[v * a + u] = 1; 
         edgesMat++;
     }
 }
@@ -135,15 +134,15 @@ void Graph::loadGraphMat(string data, int a, int b) {
 
 void Graph::addEdgeAdjMatrix(int u, int v) {
     if (u >= 0 && u < nodes && v >= 0 && v < nodes) {
-        // Marca la casilla correspondiente en la matriz de adyacencia para indicar la arista
+        
         adjMatrix[u * nodes + v] = 1;
-        adjMatrix[v * nodes + u] = 1; // Si es un grafo no dirigido
+        adjMatrix[v * nodes + u] = 1;
         edgesMat++;
     }
 }
 
 
-// Función para imprimir la matriz de adyacencia
+
 string Graph::printAdjMat() {
     string result;
     
