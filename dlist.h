@@ -21,45 +21,37 @@ private:
 public:
     DList() : head(nullptr), tail(nullptr) {}
 
-    // Function to insert an element at the end of the list
     void insertion(const T& value) {
         Node* newNode = new Node(value);
-        //nodo es el elemento de la lista
-        // esto es el nodo que vamos a agregar a la lista
+
 
         if (!head) {
-            // Si la lista está vacía, el nuevo nodo se convierte en la cabeza y la cola
             head = newNode;
             tail = newNode;
         } else {
-            // Enlazar el nuevo nodo al final de la lista
             newNode->prev = tail;
             tail->next = newNode;
             tail = newNode;
         }
     }
-
-    // Function to search for an element in the list
     T search(const T& value) const {
             Node* current = head;
         int index = 0;
 
         while (current) {
             if (current->data == value) {
-                return index; // Se encontró el valor, se devuelve el índice
+                return index; 
             }
         current = current->next;
         index++;
     }
 
-    // El valor no se encontró en la lista
     return -1;
 }
 
-    // Function to update an element at a specific index
     void update(int index, const T& value) {
             if (index < 0) {
-        // Índice negativo, no se puede actualizar
+
         return;
     }
 
@@ -72,15 +64,15 @@ public:
     }
 
     if (current) {
-        // Se encontró el nodo en la posición especificada
-        current->data = value; // Actualiza el valor del nodo
+
+        current->data = value;
     }
     }
 
-    // Function to delete an element at a specific index
+
     void deleteAt(int index) {
         if (index < 0) {
-        // Índice negativo, no se puede eliminar
+
         return;
     }
 
@@ -93,26 +85,26 @@ public:
     }
 
     if (current) {
-        // Se encontró el nodo en la posición especificada
+      
 
         if (current->prev) {
-            current->prev->next = current->next; // Actualiza el puntero "next" del nodo anterior
+            current->prev->next = current->next; 
         } else {
-            head = current->next; // Si es el primer nodo, actualiza la cabeza
+            head = current->next; 
         }
 
         if (current->next) {
-            current->next->prev = current->prev; // Actualiza el puntero "prev" del nodo siguiente
+            current->next->prev = current->prev; 
         } else {
-            tail = current->prev; // Si es el último nodo, actualiza la cola
+            tail = current->prev;
         }
 
-        delete current; // Libera la memoria del nodo eliminado
+        delete current; 
     }
 
     }
 
-    // Destructor to clean up memory
+
     ~DList() {
         Node* current = head;
         while (current) {
@@ -122,7 +114,7 @@ public:
         }
     }
 
-    // Function to convert the list to a forward string representation
+ 
     std::string toStringForward() const {
         std::stringstream ss;
         ss << "[";
@@ -138,7 +130,7 @@ public:
         return ss.str();
     }
 
-    // Function to convert the list to a backward string representation
+
     std::string toStringBackward() const {
         std::stringstream ss;
         ss << "[";
